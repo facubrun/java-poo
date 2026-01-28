@@ -4,12 +4,18 @@ public class Habitacion {
     // tamaño de la habitacion
     public static final int ANCHO = 10;
     public static final int ALTO = 10;
+
     // puertas
     private Posicion puertaEntrada;
     private Posicion puertaSalida;
 
+    // objetos de la habitacion
+    private ObjetoJuego[] objetos = new ObjetoJuego[20];
+    private int cantObjetos = 0;
+
     // jugador
-    private Personaje jugador;
+    private ObjetoJuego jugador;
+
 
     public Habitacion() {
         System.out.println("Habitacion creada");
@@ -38,18 +44,21 @@ public class Habitacion {
         this.puertaSalida = puertaSalida;
     }
 
-    public Personaje getJugador() {
-        return jugador;
-    }
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
+    public void setObjeto(ObjetoJuego objeto) {
+        this.objetos[cantObjetos] = objeto;
+        cantObjetos++;
     }
 
-    public boolean esPuerta(Posicion pos) {
-        return (pos.esIgual(puertaEntrada) || pos.esIgual(puertaSalida));
+    public int hayObjeto(Posicion pos) {
+        for (int i = 0; i < cantObjetos; i++) {
+            if (objetos[i].getPos().esIgual(pos)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
-    public boolean esJugador(Posicion pos) {
-        return pos.esIgual(jugador.getPos());
+    public ObjetoJuego getObjeto(int indice) {
+        return objetos[indice];
     }
 }

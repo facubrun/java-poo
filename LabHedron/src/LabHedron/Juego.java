@@ -11,11 +11,10 @@ public class Juego {
             for (int col= 0; col < Habitacion.ANCHO; col++) {
                 Posicion posActual = new Posicion(col, fila);
 
-                if (hab.esJugador(posActual)) {
-                    System.out.print("J"); // jugador
-
-                } else if (hab.esPuerta(posActual)) {
-                    System.out.print(" "); // puertas
+                int indiceObjeto = hab.hayObjeto(posActual);
+                if (indiceObjeto != -1) {
+                    ObjetoJuego objeto = hab.getObjeto(indiceObjeto);
+                    System.out.print(objeto.getLetra());
                 
                 } else if (col == 0 || col == Habitacion.ANCHO - 1) {
                     System.out.print("|"); // paredes laterales

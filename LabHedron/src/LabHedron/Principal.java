@@ -7,19 +7,45 @@ public class Principal {
         int accionJuego = -1;
         Scanner sc = new Scanner(System.in);
 
-        // Posicion inicial del jugador
+        // Posiciones
         Posicion posInicial = new Posicion(0, 5);
+        Posicion posFinal = new Posicion(5, Habitacion.ALTO - 1);
+        Posicion posH = new Posicion(3, 5);
+        Posicion posJugador = new Posicion(1, 5); // a la derecha de la puerta de entrada
+
 
         // Generamos objetos
         Habitacion hab = new Habitacion();
+
+        // configurar jugador
         Jugador jugador = new Jugador();
+        jugador.setPos(posJugador);
+        jugador.setLetra('J');
 
-        jugador.setPos(posInicial);
+        // configurar hedron
+        Hedron hedron = new Hedron();
+        hedron.setPos(posH);
+        hedron.setLetra('H');
+    
+        // configurar puertas
+        ObjetoJuego puertaEntrada = new ObjetoJuego();
+        puertaEntrada.setPos(posInicial);
+        puertaEntrada.setLetra(' ');
+        hab.setObjeto(puertaEntrada);
 
-        hab.setJugador(jugador);
-        hab.setPuertaEntrada(new Posicion(0,5));
-        hab.setPuertaSalida(new Posicion(5,0));
+        ObjetoJuego puertaSalida = new ObjetoJuego();
+        puertaSalida.setPos(posFinal);
+        puertaSalida.setLetra(' ');
+        hab.setObjeto(puertaSalida);
         
+        // configurar habitacion
+        hab.setObjeto(hedron);
+        hab.setObjeto(jugador);
+    
+        hab.setPuertaEntrada(posInicial);
+        hab.setPuertaSalida(posFinal);
+
+        // juego
         while (accionJuego != Juego.SALIR_JUEGO) {
             Juego.formarHabitacion(hab); // metodo estatico
             Juego.pintarMenu();
