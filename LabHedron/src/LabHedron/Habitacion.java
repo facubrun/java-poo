@@ -61,4 +61,24 @@ public class Habitacion {
     public ObjetoJuego getObjeto(int indice) {
         return objetos[indice];
     }
+
+    public int hayObjetoSinJugador(Posicion pos) {
+        for (int i = 0; i < cantObjetos; i++) {
+            if (objetos[i].getPos().esIgual(pos) && objetos[i].getTipoObjeto() != ObjetoJuego.JUGADOR) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void eliminarObjeto(int indice) {
+        if (indice < 0 || indice >= cantObjetos) {
+            throw new IllegalArgumentException("Indice de objeto invalido");
+        }
+        for (int i = indice; i < cantObjetos - 1; i++) {
+            objetos[i] = objetos[i + 1];
+        }
+        objetos[cantObjetos - 1] = null;
+        cantObjetos--;
+    }
 }
