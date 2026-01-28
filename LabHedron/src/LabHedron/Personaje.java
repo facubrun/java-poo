@@ -1,31 +1,17 @@
 package LabHedron;
 
-public class Personaje {
+public class Personaje extends ObjetoJuego {
     // Propiedades
-    private String nombre;
-    private Posicion pos;
 
     public Personaje() {
         System.out.println("Personaje creado");
     }
 
     // Getters y Setters
-    public String getNombre() {
-        return nombre;
-    }
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Posicion getPos() {
-        return pos;
-    }
-
-    public void setPos(Posicion pos) {
-        this.pos = pos;
-    }
 
     public void mover(int dado, int movX, int movY) {
+        Posicion pos = super.getPos(); // copia de la pos en ObjetoJuego
+
         if (movX + movY > dado) {
             System.out.println("No podes moverte tanto, te pasaste del valor del dado.");
             return;
@@ -43,6 +29,7 @@ public class Personaje {
 
         pos.setX(nuevaX);
         pos.setY(nuevaY);
+        super.setPos(pos);
         System.out.println("Te moviste a la posicion (" + nuevaX + ", " + nuevaY + ")");
     }
 }
