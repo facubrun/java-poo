@@ -4,7 +4,12 @@ public class Posicion {
     private int x;
     private int y;
 
-    public Posicion(int x, int y) {
+    public Posicion() {
+        this.x = 0;
+        this.y = 0;
+    }
+
+    public Posicion(int x, int y) { // sobrecarga de constructor
         this.x = x;
         this.y = y;
     }
@@ -24,5 +29,9 @@ public class Posicion {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public boolean esIgual(Posicion pos) {
+        return this.x == pos.getX() && this.y == pos.getY();
     }
 }

@@ -6,9 +6,15 @@ public class Principal {
         Posicion posInicial = new Posicion(3, 0);
 
         // Generamos objetos
-        Habitacion hab1 = new Habitacion();
-        Personaje pers1 = new Personaje();
+        Habitacion hab = new Habitacion();
+        Personaje jugador = new Personaje();
 
-        pers1.setPos(posInicial);
+        jugador.setPos(posInicial);
+
+        hab.setJugador(jugador);
+        hab.setPuertaEntrada(new Posicion(0,5));
+        hab.setPuertaSalida(new Posicion(5,0));
+        
+        Juego.formarHabitacion(hab); // metodo estatico
     }
 }
