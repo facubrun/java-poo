@@ -41,11 +41,15 @@ public class Habitacion {
     public Personaje getJugador() {
         return jugador;
     }
-    public void setJugador(Personaje jugador) {
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
     public boolean esPuerta(Posicion pos) {
         return (pos.esIgual(puertaEntrada) || pos.esIgual(puertaSalida));
+    }
+
+    public boolean esJugador(Posicion pos) {
+        return pos.esIgual(jugador.getPos());
     }
 }
